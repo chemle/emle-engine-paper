@@ -1,0 +1,35 @@
+Production
+ &cntrl
+  imin      = 0,       !MD, not minimization 
+  nstlim    = 5000,    !MD cycles
+  dt        = 0.001,   !timestep (ps)
+  ntf       = 1,       !no SHAKE
+  ntc       = 1,       !no SHAKE
+  cut       = 12.0,    !non bonded cut
+  ntb       = 1,       !periodic
+  ntp       = 0,       !NVT
+  ntt       = 3,       !Langevin
+  gamma_ln  = 2.0,     !Collision frequency for langevin dynamics
+  ntpr      = 10,      !Every ntpr steps, energy information will be printed
+  ntwr      = 10,      !Every ntwr steps, the restart file will be written
+  ntwx      = 10,      !Every ntwx steps, the coordinates will be written to the nc file
+  ig        = -1,      !RNG seed
+  ifqnt     = 1,       !Do QM/MM
+  nmropt    = 1,       !Use restraints
+ /
+ &qmmm
+  qmmask=':1-3',
+  qmcharge=0,
+  qm_theory='EXTERN',
+  qmcut=12,
+  qm_ewald=0
+ /
+ &orc
+  method='wB97X',
+  basis='6-31G*',
+  num_threads=8
+ /
+&wt type='DUMPFREQ', istep1=10, /
+&wt type='END' /
+DISANG=restr
+DUMPAVE=dih.dat
